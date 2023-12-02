@@ -12,13 +12,13 @@
     "properties": {
         "expression": "a",
         "caption": "a",
-        "totalObservations": "7",
-        "displayedObservations": "7",
-        "variables": "3",
-        "cacheKey": "72943C02",
+        "totalObservations": "14",
+        "displayedObservations": "14",
+        "variables": "4",
+        "cacheKey": "063171E7",
         "object": "a",
         "environment": "_rs_no_env",
-        "contentUrl": "grid_resource/gridviewer.html?env=_rs_no_env&obj=a&cache_key=72943C02&max_display_columns=50",
+        "contentUrl": "grid_resource/gridviewer.html?env=_rs_no_env&obj=a&cache_key=063171E7&max_display_columns=50",
         "preview": "0",
         "source_window_id": "",
         "Source": "Source"

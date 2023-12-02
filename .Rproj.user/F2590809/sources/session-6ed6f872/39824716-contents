@@ -23,7 +23,7 @@ calibration_value(input)
 
 
 
-calibration_value2 <- function(x){
+calibration_value2 <- function(x){ 
   patterns <- c("\\d{1}", 
                 "(one)", 
                 "(two)", 
@@ -71,6 +71,27 @@ calibration_value2 <- function(x){
 }
   
 
+calibration_value3 <- function(x){ browser()
+  out <- tibble(x = x) %>% 
+    mutate(first = str_match(x, "\\d|one|two|three|four|five|six|seven|eight|nine"),
+           last = str_match(x, ".*(\\d|one|two|three|four|five|six|seven|eight|nine)")[,2], 
+           across(c(first, last),
+                  ~case_when(.x == "one" ~ 1,
+                             .x == "two" ~ 2,
+                             .x == "three" ~ 3,
+                             .x == "four" ~ 4,
+                             .x == "five" ~ 5,
+                             .x == "six" ~ 6,
+                             .x == "seven" ~ 7,
+                             .x == "eight" ~ 8,
+                             .x == "nine" ~ 9,
+                             TRUE ~ suppressWarnings(as.numeric(.x))))) %>% 
+    unite("val", first, last, sep = "") %>% 
+    mutate(val = as.numeric(val))
+  
+  sum(out$val)
+}
+
 
 expect_equal(calibration_value2(c("two1nine",
                                   "eightwothree",
@@ -80,5 +101,17 @@ expect_equal(calibration_value2(c("two1nine",
                                   "zoneight234",
                                   "7pqrstsixteen")), 281)
 
-
 calibration_value2(input)
+calibration_value3(input)
+
+num <- c("one", "two", "three", "four", "five", "six", "seven", "eight", "nine")
+tibble(x = c("two1nine",
+  "eightwothree",
+  "abcone2threexyz",
+  "xtwone3four",
+  "4nineeightseven2",
+  "zoneight234",
+  "7pqrstsixteen")) %>% 
+  extract(x, "first", "(\\d|one|two|three|four|five|six|seven|eight|nine)", remove = FALSE) %>% 
+  extract(x, "last", ".*(\\d|one|two|three|four|five|six|seven|eight|nine)", remove = FALSE) %>% 
+  mutate(first = coalesce(as.numeric(first), match(first, num)))
