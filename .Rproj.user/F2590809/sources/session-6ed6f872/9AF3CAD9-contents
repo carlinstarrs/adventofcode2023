@@ -18,7 +18,7 @@ bag_games <- function(games, pop){
       .[[1]] %>%
       map_dfr(function(x){
         map_dbl(get_colors(x), function(y){
-          out <- y %>% unlist() %>% as.numeric() %>% sum()
+        out <- y %>% unlist() %>% as.numeric() %>% sum()
         })
       }) %>% 
       mutate(game_id = game_id)
