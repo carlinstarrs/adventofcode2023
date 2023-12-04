@@ -1,0 +1,28 @@
+{
+    "id": "DAC9DA83",
+    "path": null,
+    "project_path": null,
+    "type": "object_explorer",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1701671571022.0,
+    "source_on_save": false,
+    "relative_order": 18,
+    "properties": {
+        "id": "39dc0fa820594667b38dd05673554a85",
+        "name": "input",
+        "title": "input",
+        "language": "R",
+        "source_window_id": "",
+        "Source": "Source"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 2582873584272,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1701671571022,
+    "read_only": false,
+    "read_only_alternatives": []
+}

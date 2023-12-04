@@ -1,8 +1,4 @@
-library("tidyverse")
-library("testthat")
-
-input <- readLines("input/day03.txt")
-
+a
 
 find_missing_part <- function(dat){ 
   symbol_coords <- imap_dfr(dat, ~tibble(start =str_locate_all(.x, "[^a-z|\\d|\\.]")[[1]][,1], 
@@ -26,7 +22,7 @@ find_missing_part <- function(dat){
     filter(!is.na(value_sym)) 
   
   part_nums <- sum(as.numeric(number_coords$value_num))
- 
+
   #A gear is any * symbol that is adjacent to exactly two part numbers. 
   #Its gear ratio is the result of multiplying those two numbers together.
   gear_ratios <- number_coords %>% 

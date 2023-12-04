@@ -1,0 +1,19 @@
+library("tidyverse")
+library("testthat")
+library("adventdrob")
+
+d <- advent_input(3, 2023)
+
+g <- d %>% 
+  grid_tidy(x) %>% 
+  mutate(is_digit = str_detect(value, "\\d")) %>% 
+  group_by(row) %>% 
+  mutate(number_id = paste0(row, ".", cumsum(is_digit != lag(is_digit, default = FALSE)))) %>% 
+  group_by(number_id) %>% 
+  mutate(part_number = as.numeric(paste0(value, collapse = ""))) %>% 
+  ungroup()
+
+g %>% 
+  filter(!is.na(part_number)) %>% 
+  adjacent_join(g, diagonal = TRUE) %>% 
+  filter(value2 != ".", !is_digit2)
