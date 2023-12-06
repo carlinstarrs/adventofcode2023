@@ -2,18 +2,57 @@ library("tidyverse")
 library("testthat")
 library("adventdrob")
 
-d <- advent_input(3, 2023)
+d <- advent_input(4, 2023)
 
-g <- d %>% 
-  grid_tidy(x) %>% 
-  mutate(is_digit = str_detect(value, "\\d")) %>% 
-  group_by(row) %>% 
-  mutate(number_id = paste0(row, ".", cumsum(is_digit != lag(is_digit, default = FALSE)))) %>% 
-  group_by(number_id) %>% 
-  mutate(part_number = as.numeric(paste0(value, collapse = ""))) %>% 
-  ungroup()
 
-g %>% 
-  filter(!is.na(part_number)) %>% 
-  adjacent_join(g, diagonal = TRUE) %>% 
-  filter(value2 != ".", !is_digit2)
+matches %>%
+  filter (n_matches > 0) %>% 
+  summarize(sum(2 ^ (n_matches - 1)))
+
+
+#Part 2
+tick <- Sys.time()
+matches <- d %>%
+  extract(x, c("winning", "have"), ".*: (.*) \\| (.*)")%>%
+  mutate(winning = str_extract_all (winning, "\\d+"),
+         have = str_extract_all (have, "\\d+")) %>%
+  mutate(overlap = map2 (winning, have, intersect)) %>%
+  mutate(n_matches = lengths(overlap))
+
+n_games <- nrow(matches) 
+m <- matches$n_matches 
+copies <- rep(1, n_games)
+
+for (i in seq_len(n_games)) {
+  if (m[i] > 0){
+    #For each copy, add a copy of each of the next m[i] cards
+    range <- seq(i + 1, min(i + m[i], n_games)) 
+    copies[range] <- copies[range] + copies[i]
+  }
+}
+sum(copies)
+tock <- Sys.time()
+tock - tick
+
+
+input <- readLines( "input/day04.txt" )
+
+# Part 1
+wins <- strsplit(input,  ' \\| ') |> 
+  map(function(x) { browser()
+    card <- strsplit(x, ' +')
+    card <- card[!grepl(":", card)]
+    sum(card[[1]] %in% card[[2]])
+    
+  })
+
+sum((wins >= 1) * (2 ^ (wins -1)))
+
+
+n_cards <- wins ^ 0
+for(i in seq(n_cards)){
+  if(wins[i] > 0){
+    n_cards[i + seq(wins[i])] <- n_cards[i + seq(wins[i])] + ncards[i]
+  }
+}
+

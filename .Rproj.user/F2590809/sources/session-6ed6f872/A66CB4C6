@@ -1,0 +1,28 @@
+{
+    "id": "A66CB4C6",
+    "path": null,
+    "project_path": null,
+    "type": "object_explorer",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1701822637879.0,
+    "source_on_save": false,
+    "relative_order": 9,
+    "properties": {
+        "id": "b6692941b7bc4b4fa2c9a301db2677ef",
+        "name": "these_seeds",
+        "title": "these_seeds",
+        "language": "R",
+        "source_window_id": "",
+        "Source": "Source"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1701822611,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1701822637879,
+    "read_only": false,
+    "read_only_alternatives": []
+}

@@ -1,0 +1,25 @@
+{
+    "id": "36ACF51F",
+    "path": null,
+    "project_path": null,
+    "type": "r_code_browser",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1701895324508.0,
+    "source_on_save": false,
+    "relative_order": 11,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "context": "race_boats():::.f"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1554266664960,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1701895324508,
+    "read_only": false,
+    "read_only_alternatives": []
+}
