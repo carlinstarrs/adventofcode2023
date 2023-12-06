@@ -10,8 +10,6 @@ input <- read_table("input/day06.txt", col_names = FALSE) %>%
 
 
 race_boats <- function(dat, part2 = FALSE){ 
-  #46828434*45
-  
   out <- dat %>% 
     {if(part2)  t(dat) %>% 
         as_tibble() %>% 
@@ -34,12 +32,12 @@ race_boats <- function(dat, part2 = FALSE){
     return(prod(out$wins))
 }
 
-# expect_equal(race_boats(tribble(~time, ~dist, 
-#                                 7, 9,
-#                                 15,40,
-#                                 30,200)), 288)
-# 
-# race_boats(input)
+expect_equal(race_boats(tribble(~time, ~dist,
+                                7, 9,
+                                15,40,
+                                30,200)), 288)
+
+race_boats(input)
 
 expect_equal(race_boats(tribble(~time, ~dist, 
                                 7, 9,
