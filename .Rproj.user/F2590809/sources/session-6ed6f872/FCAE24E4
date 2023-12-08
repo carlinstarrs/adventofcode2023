@@ -1,25 +1,25 @@
 {
-    "id": "286A2862",
+    "id": "FCAE24E4",
     "path": null,
     "project_path": null,
-    "type": "r_source",
+    "type": "r_code_browser",
     "hash": "0",
     "contents": "",
     "dirty": false,
-    "created": 1701671702588.0,
+    "created": 1702059191431.0,
     "source_on_save": false,
-    "relative_order": 19,
+    "relative_order": 10,
     "properties": {
-        "tempName": "Untitled2",
         "source_window_id": "",
-        "Source": "Source"
+        "Source": "Source",
+        "context": "play_camel_wildcards():::.f"
     },
     "folds": "",
-    "lastKnownWriteTime": 2582873584272,
+    "lastKnownWriteTime": 2314861393504909858,
     "encoding": "",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1701671702588,
+    "last_content_update": 1702059191431,
     "read_only": false,
     "read_only_alternatives": []
 }
