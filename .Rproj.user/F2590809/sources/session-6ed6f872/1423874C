@@ -1,0 +1,28 @@
+{
+    "id": "1423874C",
+    "path": null,
+    "project_path": null,
+    "type": "object_explorer",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1702161787557.0,
+    "source_on_save": false,
+    "relative_order": 11,
+    "properties": {
+        "id": "6df75fa77b5b4a8b91f8764bfcda04b0",
+        "name": "ds_tr",
+        "title": "ds_tr",
+        "language": "R",
+        "source_window_id": "",
+        "Source": "Source"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1822614232416,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1702161787557,
+    "read_only": false,
+    "read_only_alternatives": []
+}
