@@ -1,0 +1,27 @@
+{
+    "id": "9F9C4C30",
+    "path": "~/GitHub/adventofcode2023/day10.R",
+    "project_path": "day10.R",
+    "type": "r_source",
+    "hash": "4120083627",
+    "contents": "",
+    "dirty": false,
+    "created": 1702172932717.0,
+    "source_on_save": false,
+    "relative_order": 11,
+    "properties": {
+        "tempName": "Untitled2",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "108,2",
+        "scrollLine": "86"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1702255091,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1702255091302,
+    "read_only": false,
+    "read_only_alternatives": []
+}
