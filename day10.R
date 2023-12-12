@@ -3,12 +3,15 @@ library("testthat")
 library("igraph")
 library("future")
 library("furrr")
+library("sfheaders")
 
 input <- "input/day10.txt"
 test1 <- "input/day10_test1.txt"
 test2 <- "input/day10_test2.txt"
 test3 <- "input/day10_test3.txt"
 test4 <- "input/day10_test4.txt"
+test5 <- "input/day10_test5.txt"
+
 parse_input <- function(dir){
   dat <- readLines(dir)
   grid_width <- nchar(dat[1])
@@ -26,7 +29,7 @@ parse_input <- function(dir){
 
 plan(multisession)
 
-loop_pipes <- function(dat){
+loop_pipes <- function(dat, part2 = FALSE){
   start_val <- dat %>% filter(pipe == "S") %>% pull(from)
   
   out <- dat %>% 
@@ -79,7 +82,7 @@ loop_pipes <- function(dat){
   out <- out %>%
     left_join(vids %>% select(pipe_from = pipe_name, from), by = c("from")) %>%
     left_join(vids %>% select(pipe_to = pipe_name, to = from), by = c("to"))
- 
+  
   #make graph
   g <- igraph::make_graph(edges = pmap(out, function(pipe_from, pipe_to, ...) c(pipe_from, pipe_to)) %>% unlist(recursive = F), directed = TRUE)
   
@@ -101,14 +104,31 @@ loop_pipes <- function(dat){
       }
     }) %>% 
     compact()
-  
-  sub_graphs <- lapply(valid_paths, function(vs) induced_subgraph(g, vs))
-  
-  aa <- as_long_data_frame(sub_graphs[[1]])
-  plot(sub_graphs[[1]])
-  
-  plot(valid_paths[[1]])
   browser()
+  if(part2){
+    path_seq <- c(valid_paths[[1]], 
+                  valid_paths[[1]][1])
+    
+    path_xy <- out %>% filter(pipe_from %in% valid_paths[[1]])
+    
+    path_sf <- tibble(pipe_from = path_seq[-length(path_seq)], 
+                      pipe_to = path_seq[-1]) %>% 
+      left_join(out) %>% 
+      select(x,y) %>% 
+      sfheaders::sfc_polygon()
+    
+    
+    full_grid <- dat %>%
+      select(x, y) %>%
+      sfheaders::sfc_point()
+    
+    ggplot() + 
+      geom_sf(data = full_grid) + 
+      geom_sf(data = path_sf, color = "red", fill = "red", alpha = 0.2) 
+    
+    return(sum(st_within(full_grid, path_sf, sparse= FALSE)))
+  }
+  
   return(max(map_dbl(valid_paths, length))/2)
 }
 
@@ -116,5 +136,7 @@ expect_equal(loop_pipes(parse_input(test1)), 4)
 expect_equal(loop_pipes(parse_input(test3)), 4)
 expect_equal(loop_pipes(parse_input(test2)), 8)
 expect_equal(loop_pipes(parse_input(test4)), 8)
+expect_equal(loop_pipes(parse_input(test5), part2 = TRUE), 8)
 
 loop_pipes(parse_input(input))
+loop_pipes(parse_input(input), part2 = TRUE)
